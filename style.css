@@ -23,3 +23,8 @@ body {
     width: 600px;
     overflow: hidden;
 }
+
+.quiz-header {
+    padding: 4rem;
+}
+
