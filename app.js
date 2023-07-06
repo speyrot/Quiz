@@ -48,3 +48,29 @@ const submitBtn = document.getElementById('submit');
 
 let currentQuiz = 0;
 let score = 0;
+
+//Deselect answer
+
+function deselectAnswers () {
+    answerEls.forEach (answerEls => answerEl.checked = false)
+};
+
+//Main Function
+
+loadQuiz();
+
+function loadQuiz () {
+    deselectAnswers();
+
+    const currentQuizData = quizData[currentQuiz];
+
+    questionEl.innerText = currentQuizData.question;
+    a_text.innerText = currentQuizData.a;
+    b_text.innerText = currentQuizData.b;
+    c_text.innerText = currentQuizData.c;
+    d_text.innerText = currentQuizData.d;
+}
+
+// Get selected answer
+
+
