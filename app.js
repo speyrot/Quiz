@@ -49,13 +49,8 @@ const submitBtn = document.getElementById('submit');
 let currentQuiz = 0;
 let score = 0;
 
-//Deselect answer
 
-function deselectAnswers () {
-    answerEls.forEach (answerEls => answerEl.checked = false)
-};
-
-//Main Function
+//Load Quiz Question Function
 
 loadQuiz();
 
@@ -69,8 +64,52 @@ function loadQuiz () {
     b_text.innerText = currentQuizData.b;
     c_text.innerText = currentQuizData.c;
     d_text.innerText = currentQuizData.d;
-}
+};
+
+
+//Deselect answer
+
+function deselectAnswers () {
+    answerEls.forEach (answerEl => answerEl.checked = false);
+};
+
 
 // Get selected answer
 
+function getSelected () {
+    let answer
+
+    answerEls.forEach(answerEl => {
+        if (answerEl.checked) {
+            answer = answerEl.id;
+        };
+    });
+
+    return answer;
+};
+
+
+//Submit button
+
+submitBtn.addEventListener('click', () => {
+    const answer = getSelected();
+
+    if(answer) {
+        if (answer === quizData[currentQuiz].correct) {
+            score++;
+        };
+
+        currentQuiz++;
+
+        if(currentQuiz < quizData.length) {
+            loadQuiz();
+        } else {
+            quiz.innerHTML = `
+            <h2>You answered ${score}/${quizData.length} questions correctly</h2>
+
+            <button onclick="location.reload()">Reload</button>
+        `;
+        };
+    };
+});
 
